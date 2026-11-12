@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pure Hair Spa · Home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#f8f8f8;color:#353535;font-family:'Jost',system-ui,sans-serif}
+a{color:#2f6f6d}a:hover{color:#1f4f4d}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 26px;border-radius:999px;background:#353535;color:#f8f8f8;text-decoration:none;font-size:15px;letter-spacing:.04em;transition:background .25s}
+.btn:hover{background:#1f4f4d;color:#fff}
+.btn-soft{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 26px;border-radius:999px;background:transparent;border:1px solid #353535;color:#353535;text-decoration:none;font-size:15px;letter-spacing:.04em;transition:all .25s}
+.btn-soft:hover{background:#b0dad9;border-color:#b0dad9;color:#353535}
+.menu-btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;border-radius:999px;border:1px solid #cfe3e2;background:#fff;color:#353535;font:500 14px 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.menu-btn:hover{background:#b0dad9;border-color:#b0dad9}
+.btn,.btn-soft,.chip{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;border:0 !important;border-radius:999px;font:600 17px/1 -apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',system-ui,sans-serif !important;letter-spacing:-.01em !important;text-decoration:none;cursor:pointer;box-shadow:none;transition:transform .3s cubic-bezier(.2,.8,.2,1),background .25s !important}
+.btn{background:#b0dad9 !important;color:#1f3b3a !important}
+.btn:hover{background:#9fd0ce !important;color:#1f3b3a !important}
+.btn-soft,.chip{background:rgba(47,111,109,.1) !important;color:#2f6f6d !important}
+.btn-soft:hover,.chip:hover{background:rgba(47,111,109,.17) !important;color:#1f4f4d !important}
+.chip{min-height:44px;padding:0 18px;font-size:15px !important;font-weight:500 !important}
+.btn:active,.btn-soft:active,.chip:active{transform:scale(.97)}
+.glass,.menu-btn{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border:0 !important;border-radius:999px;color:#14302f !important;text-decoration:none;cursor:pointer;font:600 17px/1 -apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',system-ui,sans-serif !important;letter-spacing:-.01em !important;text-transform:none !important;background:rgba(255,255,255,.4) !important;-webkit-backdrop-filter:blur(18px) saturate(180%) brightness(1.06);backdrop-filter:blur(18px) saturate(180%) brightness(1.06);box-shadow:inset 0 1px 1px rgba(255,255,255,.85),inset 0 -1px 1px rgba(255,255,255,.3),0 10px 30px rgba(20,48,47,.14),0 1px 3px rgba(20,48,47,.1);transition:transform .45s cubic-bezier(.2,.9,.25,1.25),background .3s,box-shadow .3s}
+.glass::before,.menu-btn::before,.bar::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(140deg,rgba(255,255,255,.95),rgba(255,255,255,.15) 35%,rgba(255,255,255,.05) 60%,rgba(255,255,255,.65));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.glass::after,.menu-btn::after{content:"";position:absolute;left:12%;right:12%;top:2px;height:45%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0));pointer-events:none;z-index:-1}
+.glass.tint{background:rgba(120,190,188,.45) !important;color:#0f2c2b !important}
+.glass:hover,.menu-btn:hover{background:rgba(255,255,255,.55) !important;transform:scale(1.03)}
+.glass.tint:hover{background:rgba(120,190,188,.58) !important}
+.glass:active,.menu-btn:active{transform:scale(1.07);box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 0 0 6px rgba(176,218,217,.28),0 14px 36px rgba(20,48,47,.18)}
+.bar{position:relative;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);box-shadow:inset 0 1px 1px rgba(255,255,255,.85),0 12px 40px rgba(20,48,47,.12),0 1px 3px rgba(20,48,47,.08)}
+.bar-cta{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;background:#2f6f6d;color:#fff;text-decoration:none;font:600 15px/1 -apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',system-ui,sans-serif;transition:background .25s,transform .3s}
+.bar-cta:hover{background:#1f4f4d;color:#fff}
+.bar-cta:active{transform:scale(.96)}
+.bar-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:#353535;font:600 15px/1 -apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',system-ui,sans-serif;cursor:pointer;transition:background .2s}
+.bar-btn:hover{background:rgba(53,53,53,.07)}
+.mbar{display:none}
+@media (max-width:720px){
+.mbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:50;display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:6px;padding:6px;border-radius:999px;background:rgba(255,255,255,.58);-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 14px 40px rgba(20,48,47,.2),0 1px 3px rgba(20,48,47,.1)}
+.mbar a{display:flex;align-items:center;justify-content:center;gap:7px;min-height:50px;border-radius:999px;color:#14302f;text-decoration:none;font:600 15px/1 -apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',system-ui,sans-serif;transition:background .2s,transform .2s}
+.mbar a:active{transform:scale(.96);background:rgba(47,111,109,.1)}
+.mbar a.mbar-book{background:#2f6f6d;color:#fff}
+.mbar-space{height:84px}
+}
+.ba-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:24px;align-items:start}
+.ba-stage{position:relative;border-radius:22px;overflow:hidden;background:#e6f1f0;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.ba-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba-line{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 12px rgba(0,0,0,.18);pointer-events:none}
+.ba-knob{position:absolute;top:50%;left:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);box-shadow:inset 0 1px 1px #fff,0 6px 18px rgba(20,48,47,.25)}
+.ba-tag{position:absolute;top:14px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font:600 12px/1 -apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#14302f;pointer-events:none}
+.ba-sample{position:absolute;left:14px;bottom:14px;padding:6px 10px;border-radius:999px;background:rgba(20,48,47,.55);color:#fff;font:500 11px/1 -apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:.08em;pointer-events:none}
+.ba-range{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;-webkit-appearance:none;appearance:none}
+.ba-range:focus-visible + .ba-focus{outline:2px solid #2f6f6d}
+.team-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.mono{width:100%;aspect-ratio:1/1;border-radius:26px;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 120% at 30% 20%,#ffffff 0%,#d9efee 45%,#b0dad9 100%);font-family:'Cormorant Garamond',serif;font-size:64px;color:#2f6f6d;letter-spacing:.02em;position:relative;overflow:hidden}
+.mono::after{content:"";position:absolute;left:-20%;right:-20%;bottom:-40%;height:70%;border-radius:50%;border:1px solid rgba(47,111,109,.18)}
+.stars{display:inline-flex;gap:3px}
+.rev-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.ig-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.ig-tile{position:relative;display:block;aspect-ratio:1/1;border-radius:22px;overflow:hidden}
+.ig-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.ig-tile .ig-ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(20,48,47,0);transition:background .3s}
+.ig-tile .ig-ov svg{opacity:0;transform:scale(.85);transition:opacity .3s,transform .3s}
+.ig-tile:hover img{transform:scale(1.06)}
+.ig-tile:hover .ig-ov{background:rgba(20,48,47,.28)}
+.ig-tile:hover .ig-ov svg{opacity:1;transform:scale(1)}
+.ig-tile:focus-visible{outline:2px solid #2f6f6d;outline-offset:3px}
+@media (max-width:980px){.team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.rev-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){
+.ba-grid{grid-template-columns:1fr}
+.team-grid{gap:14px}
+.mono{font-size:48px;border-radius:22px}
+.rev-grid,.ig-grid{display:flex !important;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -24px;padding:8px 24px 24px;gap:14px !important;scrollbar-width:none}
+.rev-grid::-webkit-scrollbar,.ig-grid::-webkit-scrollbar{display:none}
+.rev-grid > *{flex:0 0 84%;scroll-snap-align:center}
+.ig-grid > *{flex:0 0 42%;scroll-snap-align:start}
+.rating-badge{width:100%}
+}
+.mapcard{position:relative;flex:1;display:block;border-radius:28px;overflow:hidden;background:#e6f2f1;text-decoration:none;color:#353535}
+.mapcard svg.map{position:absolute;inset:0;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.mapcard:hover svg.map{transform:scale(1.04)}
+.mapcard .pin{position:absolute;left:50%;top:44%;transform:translate(-50%,-100%);filter:drop-shadow(0 6px 8px rgba(20,48,47,.25))}
+.mapcard .pulse{position:absolute;left:50%;top:44%;width:22px;height:10px;margin:-5px 0 0 -11px;border-radius:50%;background:rgba(47,111,109,.4);animation:mapPulse 2.4s ease-out infinite}
+@keyframes mapPulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(4.2);opacity:0}}
+.mapcard .mapchip{position:absolute;left:14px;right:14px;bottom:14px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:14px 14px 14px 18px;border-radius:20px;background:rgba(255,255,255,.74);-webkit-backdrop-filter:blur(16px) saturate(160%);backdrop-filter:blur(16px) saturate(160%);box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 10px 30px rgba(20,48,47,.14)}
+.mapcard .go{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:#2f6f6d;color:#fff;font:600 15px/1 -apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',system-ui,sans-serif;white-space:nowrap;transition:background .25s}
+.mapcard:hover .go{background:#1f4f4d}
+.mapcard:focus-visible{outline:2px solid #2f6f6d;outline-offset:4px}
+@media (prefers-reduced-motion:reduce){.mapcard .pulse{animation:none}}
+.pt-arrive{position:fixed;inset:0;z-index:199;pointer-events:none;will-change:-webkit-mask-position,mask-position;background:radial-gradient(120% 90% at 50% 110%,#b0dad9 0%,#d6eeed 38%,#f6fafa 70%,#f8f8f8 100%);-webkit-mask-image:linear-gradient(180deg,transparent 0%,transparent 38%,#000 62%,#000 100%);mask-image:linear-gradient(180deg,transparent 0%,transparent 38%,#000 62%,#000 100%);-webkit-mask-size:100% 260%;mask-size:100% 260%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:0 100%;mask-position:0 100%;animation:ptRecede 1.7s cubic-bezier(.6,0,.25,1) .55s forwards,ptGone 0s linear 2.35s forwards}
+.pt-arrive img{position:absolute;left:50%;top:50%;height:96px;width:auto;transform:translate(-50%,-50%);animation:ptMarkOut .7s ease .45s forwards}
+@keyframes ptRecede{to{-webkit-mask-position:0 0;mask-position:0 0}}
+@keyframes ptGone{to{visibility:hidden}}
+@keyframes ptMarkOut{to{opacity:0;filter:blur(8px);transform:translate(-50%,-46%)}}
+@media (prefers-reduced-motion:reduce){.pt-arrive{display:none}}
+.frost{position:relative;isolation:isolate;background:linear-gradient(160deg,rgba(255,255,255,.82),rgba(246,249,249,.58));-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);box-shadow:inset 1.5px 1.5px 1px rgba(255,255,255,.95),inset -1.5px -1.5px 2px rgba(53,53,53,.10),inset 0 -10px 22px rgba(53,53,53,.035),inset 0 8px 18px rgba(255,255,255,.5),0 1px 2px rgba(20,48,47,.06),0 22px 44px -14px rgba(20,48,47,.22);transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.frost::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:linear-gradient(145deg,#fff,rgba(255,255,255,.25) 38%,rgba(170,182,182,.35) 70%,rgba(110,122,122,.5));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:2}
+.frost::after{content:"";position:absolute;left:6%;right:30%;top:0;height:38%;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0));pointer-events:none;z-index:-1}
+a.frost:hover,.frost.lift:hover{transform:translateY(-4px);box-shadow:inset 1.5px 1.5px 1px rgba(255,255,255,.95),inset -1.5px -1.5px 2px rgba(53,53,53,.10),inset 0 -10px 22px rgba(53,53,53,.035),inset 0 8px 18px rgba(255,255,255,.5),0 2px 4px rgba(20,48,47,.06),0 30px 56px -16px rgba(20,48,47,.28)}
+.ambient{position:absolute;inset:-60px -12%;z-index:-1;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 78%,transparent 100%),linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 78%,transparent 100%),linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;background:radial-gradient(38% 48% at 14% 32%,rgba(176,218,217,.6),rgba(176,218,217,0) 70%),radial-gradient(34% 44% at 86% 70%,rgba(176,218,217,.5),rgba(176,218,217,0) 70%),radial-gradient(30% 40% at 55% 8%,rgba(201,188,176,.28),rgba(201,188,176,0) 70%)}
+@media (prefers-reduced-transparency:reduce){.frost{background:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}}
+.btn:focus-visible,.btn-soft:focus-visible,.chip:focus-visible,.glass:focus-visible,.menu-btn:focus-visible,.bar-cta:focus-visible,.bar-btn:focus-visible{outline:2px solid #2f6f6d;outline-offset:3px}
+@media (prefers-reduced-transparency:reduce){.glass,.menu-btn,.bar{background:#fff !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important}.glass.tint{background:#b0dad9 !important}}
+@media (prefers-contrast:more){.glass,.menu-btn,.bar{background:#fff !important;box-shadow:0 0 0 1.5px #353535 !important}.btn-soft,.chip{box-shadow:inset 0 0 0 1.5px #2f6f6d !important}}
+.nav-big{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,72px);line-height:1.1;color:#353535;text-decoration:none;display:inline-block;transition:color .2s,transform .3s}
+.nav-big:hover{color:#2f6f6d;transform:translateX(8px)}
+.card-link{text-decoration:none;color:#353535;transition:transform .35s}
+.card-link:hover{transform:translateY(-4px)}
+.wf .s{flex:1;background-image:repeating-linear-gradient(180deg,rgba(255,255,255,0) 0 22px,rgba(255,255,255,.8) 22px 30px,rgba(255,255,255,0) 30px 64px,rgba(255,255,255,.35) 64px 92px,rgba(255,255,255,0) 92px 160px);background-size:100% 160px;animation:wfA var(--flow,1.8s) linear infinite;opacity:.85;border-radius:0 0 45% 45%}
+.wf .s:nth-child(3n){animation-name:wfB;background-size:100% 220px;animation-duration:calc(var(--flow,1.8s)*1.3);opacity:.55}
+.wf .s:nth-child(4n+1){animation-duration:calc(var(--flow,1.8s)*.8);opacity:.95}
+.wf .streams{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 88%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 88%,transparent 100%)}
+.wf .mist{animation:mist 5s ease-in-out infinite alternate}
+.wf .rp{position:absolute;left:50%;top:34px;width:140px;height:28px;margin-left:-70px;border:1.5px solid rgba(255,255,255,.9);border-radius:50%;opacity:0;animation:rp 3.3s ease-out infinite}
+.wf .rp:nth-child(2){animation-delay:1.1s}.wf .rp:nth-child(3){animation-delay:2.2s}
+.wf .drop{animation:drip 4s ease-in infinite}
+@keyframes wfA{to{background-position:0 160px}}
+@keyframes wfB{to{background-position:0 220px}}
+@keyframes mist{from{transform:translateX(-14px) scale(1);opacity:.95}to{transform:translateX(14px) scale(1.1);opacity:.65}}
+@keyframes rp{0%{transform:scale(.2);opacity:.95}100%{transform:scale(3.6);opacity:0}}
+@keyframes drip{0%,55%{transform:translateY(0) rotate(45deg);opacity:0}60%{opacity:1}100%{transform:translateY(420px) rotate(45deg);opacity:0}}
+.ripple-bg span{position:absolute;border:1px solid rgba(47,111,109,.18);border-radius:50%;animation:rp2 9s ease-out infinite}
+.ripple-bg span:nth-child(2){animation-delay:3s}.ripple-bg span:nth-child(3){animation-delay:6s}
+@keyframes rp2{0%{transform:scale(.3);opacity:1}100%{transform:scale(1.6);opacity:0}}
+@media (max-width:720px){.hide-sm{display:none !important}}
+@media (max-width:720px){
+section[style*="padding: 96px 24px"]{padding-top:56px !important;padding-bottom:56px !important}
+section[style*="24px 96px"]{padding-bottom:56px !important}
+section[style*="24px 72px"]{padding-bottom:48px !important}
+.frost[style*="padding: 56px"],.frost[style*="padding: 48px"],.frost[style*="padding: 44px"]{padding:28px 22px !important}
+[style*="padding: 64px 56px"],[style*="padding: 64px 48px"]{padding:36px 24px !important}
+[style*="border-radius: 48px"]{border-radius:32px !important}
+.hero{height:auto !important}
+.hero-media{position:relative !important;inset:auto !important;height:520px}
+.hero-media::after{content:"";position:absolute;left:0;right:0;bottom:0;height:150px;background:linear-gradient(180deg,rgba(248,248,248,0),#f8f8f8);pointer-events:none}
+.hero-fade,.hero-bfade{display:none !important}
+.hero-inner{height:auto !important;padding:0 20px 48px !important;margin-top:-64px !important}
+.hero-text{max-width:none !important;gap:20px !important}
+.hero-text h1{font-size:46px !important}
+.hero-text p{font-size:17px !important}
+.hero-stats{gap:22px !important}
+.hero-stats > div > div:first-child{font-size:30px !important}
+.snap-row{display:flex !important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:0 -24px;padding:8px 24px 28px;gap:16px !important;scrollbar-width:none}
+.snap-row::-webkit-scrollbar{display:none}
+.snap-row > *{flex:0 0 82%;scroll-snap-align:center}
+.btn,.btn-soft,.glass{min-height:52px}
+}
+@media (prefers-reduced-motion:reduce){.wf *,.ripple-bg span,.wf .drop{animation:none !important}}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 100vh; background: #f8f8f8; color: #353535; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden">
+
+<div class="pt-arrive" aria-hidden="true"><img src="/_blob/ec7fe47f07b85e408d351a4770f5a2e1" alt=""></div>
+<header style="position: sticky; top: 0; z-index: 20; padding: 12px 16px 0; pointer-events: none">
+<div class="bar" style="max-width: 1240px; margin: 0 auto; padding: 8px 8px 8px 22px; border-radius: 999px; display: flex; align-items: center; justify-content: space-between; gap: 16px; pointer-events: auto">
+<a href="Main.dc.html" aria-label="Pure Hair Spa home" style="display: flex"><img src="/_blob/ec7fe47f07b85e408d351a4770f5a2e1" alt="Pure Hair logo" style="height: 44px; width: auto; mix-blend-mode: multiply"></a>
+<div style="display: flex; align-items: center; gap: 12px">
+<a href="tel:+12487923146" class="hide-sm" style="font-size: 15px; letter-spacing: .04em; color: #353535; text-decoration: none">(248) 792-3146</a>
+<a href="Contact.dc.html" class="bar-cta hide-sm">Request appointment</a>
+<button type="button" class="bar-btn" onClick="{{openMenu}}" aria-label="Open menu"><svg width="22" height="14" viewBox="0 0 22 14" aria-hidden="true" fill="none" stroke="#353535" stroke-width="1.5" stroke-linecap="round"><path d="M1 2c3-1.5 6 1.5 10 0s7-1.5 10 0"></path><path d="M1 12c3-1.5 6 1.5 10 0s7-1.5 10 0"></path></svg><span>Menu</span></button>
+</div>
+</div>
+</header>
+
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
+<div style="position: fixed; inset: 0; z-index: 60; background: rgba(248,248,248,0.6); -webkit-backdrop-filter: blur(30px) saturate(160%); backdrop-filter: blur(30px) saturate(160%); overflow-y: auto">
+<div style="max-width: 1240px; margin: 0 auto; padding: 12px 24px 48px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<img src="/_blob/ec7fe47f07b85e408d351a4770f5a2e1" alt="Pure Hair logo" style="height: 58px; width: auto; mix-blend-mode: multiply">
+<button type="button" class="menu-btn" onClick="{{closeMenu}}" aria-label="Close menu"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="#353535" stroke-width="1.5" stroke-linecap="round"><path d="M2 2l12 12M14 2L2 14"></path></svg><span>Close</span></button>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 56px; margin-top: 56px; align-items: start">
+<nav aria-label="Main" style="display: flex; flex-direction: column; gap: 10px">
+<a class="nav-big" onClick="{{closeMenu}}" href="Main.dc.html">Home</a>
+<a class="nav-big" onClick="{{closeMenu}}" href="Services.dc.html">Services</a><a class="nav-big" onClick="{{closeMenu}}" href="Services.dc.html#products">Products</a>
+<a class="nav-big" onClick="{{closeMenu}}" href="FAQ.dc.html">FAQ</a>
+<a class="nav-big" onClick="{{closeMenu}}" href="Contact.dc.html">Contact &amp; Booking</a>
+</nav>
+</div>
+</div>
+</div>
+</sc-if>
+
+<section class="hero" style="position: relative; width: 100%; height: 854px; margin-top: -74px; overflow: hidden; background: #dcebea">
+<div class="hero-media" data-falls-fill="" role="img" aria-label="A misty waterfall pours over limestone into a still turquoise pool. Touch the water to send ripples across it." style="position: absolute; inset: 0">
+<dc-import name="Falls" height="854" fill="true" video="/_blob/1dfa195d2e15fbb4cfa1d44522f3fb67" poster="/_blob/1134c036b31f643218f9df52e38fe195" mask="/_blob/3ee74958a0985a22e3410f51ac0927de" focusX="0.72" focusY="0.5" hint-size="100%,854px"></dc-import>
+</div>
+<div class="hero-fade" aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(248,248,248,0.9) 0%, rgba(248,248,248,0.66) 34%, rgba(248,248,248,0) 62%)"></div>
+<div class="hero-bfade" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 160px; pointer-events: none; background: linear-gradient(180deg, rgba(248,248,248,0), #f8f8f8)"></div>
+<div class="hide-sm" aria-hidden="true" style="position: absolute; right: 24px; bottom: 96px; z-index: 3; pointer-events: none; display: flex; align-items: center; gap: 10px; padding: 10px 18px; border-radius: 999px; background: rgba(255,255,255,0.66); backdrop-filter: blur(8px); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #353535"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#2f6f6d" stroke-width="1.4" stroke-linecap="round"><path d="M8 1c2.5 3.2 4.5 5.8 4.5 8.2A4.5 4.5 0 0 1 3.5 9.2C3.5 6.8 5.5 4.2 8 1z"></path></svg>Touch the water</div>
+<div class="hero-inner" style="position: relative; z-index: 2; max-width: 1240px; height: 100%; margin: 0 auto; padding: 74px 24px 0; box-sizing: border-box; display: flex; align-items: center; pointer-events: none">
+<div class="hero-text" style="display: flex; flex-direction: column; gap: 28px; max-width: 580px; pointer-events: auto">
+<div style="font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #2f6f6d">Boutique hair spa · Bloomfield Township, MI</div>
+<h1 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(48px, 6.4vw, 92px); line-height: 1.02; letter-spacing: -.01em">Healthy hair,<br><em style="color: #2f6f6d">restored naturally.</em></h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.7; font-weight: 300; max-width: 30em">A family owned salon specializing in damaged hair reconstruction, scalp care and healthy hair maintenance, with thoughtful care for hair, skin and nails.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px">
+<a href="Contact.dc.html" class="glass tint">Request an appointment</a>
+<a href="Services.dc.html" class="glass">Explore services</a>
+</div>
+<div class="hero-stats" style="display: flex; flex-wrap: wrap; gap: 32px; padding-top: 20px; border-top: 1px solid rgba(53,53,53,0.14)">
+<div><div style="font-family: 'Cormorant Garamond', serif; font-size: 40px; line-height: 1">2011</div><div style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #4a4a4a; margin-top: 6px">Established</div></div>
+<div><div style="font-family: 'Cormorant Garamond', serif; font-size: 40px; line-height: 1">25+</div><div style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #4a4a4a; margin-top: 6px">Years of experience</div></div>
+<div><div style="font-family: 'Cormorant Garamond', serif; font-size: 40px; line-height: 1">Family</div><div style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #4a4a4a; margin-top: 6px">Owned and operated</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<svg viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="display: block; width: 100%; height: 80px"><path d="M0 40 C 240 0, 480 80, 720 40 S 1200 0, 1440 40 L1440 80 L0 80 Z" fill="#eaf5f4"></path></svg>
+<section style="background: #eaf5f4; padding: 72px 24px 112px">
+<div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 64px; align-items: center">
+<div style="position: relative; height: 520px">
+<div style="position: absolute; left: 0; top: 0; width: 72%; height: 400px; background: #d7e8e7; border-radius: 48% 52% 44% 56% / 52% 40% 60% 48%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; box-sizing: border-box; color: #3e5453; font-size: 14px; letter-spacing: .08em">[PHOTO: the salon interior, natural light]</div>
+<div style="position: absolute; right: 0; bottom: 0; width: 52%; height: 280px; background: #c9dcdb; border: 8px solid #eaf5f4; border-radius: 56% 44% 50% 50% / 46% 54% 46% 54%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; box-sizing: border-box; color: #3e5453; font-size: 14px; letter-spacing: .08em">[PHOTO: stylist at work]</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 22px">
+<div style="font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #2f6f6d">Our story</div>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(38px, 4.4vw, 60px); line-height: 1.08">Rooted in care<br>since 2011</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.8; font-weight: 300">Pure Hair is a family owned boutique salon in the heart of Bloomfield Township, Michigan. We are committed to a service that brings health and beauty together for hair, skin and nails.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.8; font-weight: 300">Our educated team is passionate and dedicated, with more than 25 years of industry experience. Whether your hair needs rebuilding or simply care, we start with what it needs to be healthy.</p>
+<a href="Contact.dc.html" style="font-size: 15px; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 44px">Visit the salon <svg width="22" height="10" viewBox="0 0 22 10" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M0 5h20M16 1l4 4-4 4"></path></svg></a>
+</div>
+</div>
+</section>
+<svg viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="display: block; width: 100%; height: 80px; background: #eaf5f4"><path d="M0 40 C 240 80, 480 0, 720 40 S 1200 80, 1440 40 L1440 80 L0 80 Z" fill="#f8f8f8"></path></svg>
+
+<section id="team" style="position: relative; isolation: isolate; max-width: 1240px; margin: 0 auto; padding: 72px 24px 40px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 640px">
+<div style="font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #2f6f6d">Meet the team</div>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(38px, 4.4vw, 60px); line-height: 1.08">The hands behind<br><em style="color: #2f6f6d">your healthiest hair.</em></h2>
+</div>
+<p style="margin: 0; font-size: 17px; line-height: 1.7; font-weight: 300; max-width: 26em; color: #4a4a4a">A small, family owned team with more than 25 years of experience, and clients who have trusted us since 2011.</p>
+</div>
+<div class="team-grid">
+<sc-for list="{{team}}" as="m" hint-placeholder-count="4">
+<article class="frost lift" style="border-radius: 32px; padding: 14px 14px 22px; display: flex; flex-direction: column; gap: 14px">
+<div class="mono" role="img" aria-label="{{m.alt}}">{{m.initials}}</div>
+<div style="padding: 0 8px; display: flex; flex-direction: column; gap: 6px">
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 28px; line-height: 1.1">{{m.name}}</h3>
+<div style="font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #2f6f6d">{{m.role}}</div>
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.6; font-weight: 300; color: #4a4a4a">{{m.bio}}</p>
+</div>
+</article>
+</sc-for>
+</div>
+</section>
+
+<section style="position: relative; isolation: isolate; max-width: 1240px; margin: 0 auto; padding: 72px 24px 96px">
+<div class="ambient" aria-hidden="true"></div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #2f6f6d">Services</div>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(38px, 4.4vw, 60px); line-height: 1.08">Care for hair, skin and nails</h2>
+</div>
+<a href="Services.dc.html" class="btn-soft">View the full menu</a>
+</div>
+<div class="snap-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px">
+<sc-for list="{{services}}" as="svc" hint-placeholder-count="6">
+<a href="{{svc.href}}" class="card-link frost" style="display: flex; flex-direction: column; gap: 16px; padding: 28px; border-radius: 32px; min-height: 220px; box-sizing: border-box">
+<div style="width: 52px; height: 52px; border-radius: 50%; background: #b0dad9; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #353535">{{svc.num}}</div>
+<div style="font-family: 'Cormorant Garamond', serif; font-size: 32px; line-height: 1.1">{{svc.name}}</div>
+<div style="font-size: 16px; line-height: 1.7; font-weight: 300; color: #4a4a4a">{{svc.items}}</div>
+</a>
+</sc-for>
+</div>
+</section>
+
+<section style="position: relative; isolation: isolate; padding: 24px 24px 96px">
+<div class="ambient" aria-hidden="true" style="inset: -40px 0"></div>
+<div class="frost" style="max-width: 1240px; margin: 0 auto; border-radius: 48px; overflow: hidden; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))">
+<div class="ripple-bg" aria-hidden="true" style="position: absolute; right: -120px; top: -120px; width: 520px; height: 520px; pointer-events: none"><span style="inset: 0"></span><span style="inset: 0"></span><span style="inset: 0"></span></div>
+<div style="padding: 64px 56px; display: flex; flex-direction: column; gap: 22px; position: relative">
+<div style="font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #1f4f4d">Our specialty</div>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(38px, 4.4vw, 60px); line-height: 1.08">Hair reconstruction</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.8; font-weight: 300">Color, heat and time take a toll. We rebuild strength and softness with targeted in-salon treatments, care for the scalp beneath, then send you home with a routine that keeps both healthy between visits.</p>
+<div class="frost" style="border-radius: 26px; padding: 22px 24px; display: flex; flex-direction: column; gap: 6px">
+<div style="font-family: 'Cormorant Garamond', serif; font-size: 26px">Kérastase Fusio-Dose</div>
+<div style="font-size: 16px; line-height: 1.6; font-weight: 300">An instant, personalized treatment mixed for your hair in the chair.</div>
+</div>
+<a href="Services.dc.html#scalp" class="frost" style="border-radius: 26px; padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; color: #353535; text-decoration: none">
+<div style="display: flex; align-items: center; gap: 10px"><span style="font-family: 'Cormorant Garamond', serif; font-size: 26px">Scalp care</span><span style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #2f6f6d; background: rgba(47,111,109,0.1); border-radius: 999px; padding: 5px 10px">New</span></div>
+<div style="font-size: 16px; line-height: 1.6; font-weight: 300">Healthy hair starts at the scalp. Cleansing, hydrating and balancing treatments, beginning with a consultation.</div>
+</a>
+<a href="Contact.dc.html" class="btn" style="align-self: flex-start">Book a consultation</a>
+</div>
+<div style="min-height: 420px; margin: 14px; border-radius: 34px; background: rgba(176,218,217,0.45); display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; box-sizing: border-box; color: #1f3b3a; font-size: 14px; letter-spacing: .08em; position: relative">[PHOTO OR VIDEO: treatment being applied, close up]</div>
+</div>
+</section>
+
+<section id="results" style="position: relative; isolation: isolate; max-width: 1240px; margin: 0 auto; padding: 24px 24px 96px">
+<div class="ambient" aria-hidden="true"></div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 36px">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #2f6f6d">Before &amp; after</div>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(38px, 4.4vw, 60px); line-height: 1.08">See the difference</h2>
+</div>
+<p style="margin: 0; font-size: 17px; line-height: 1.7; font-weight: 300; max-width: 24em; color: #4a4a4a">Drag the handle to compare. Every result starts with a consultation about your hair.</p>
+</div>
+<div class="ba-grid">
+<figure class="frost" style="margin: 0; border-radius: 32px; padding: 12px; display: flex; flex-direction: column; gap: 14px">
+<div class="ba-stage" style="aspect-ratio: 4 / 3">
+<img class="ba-img" src="/_blob/1ed357b5731fa5405a55b1191e88ca85" alt="After: smooth, glossy, healthy hair following a reconstruction treatment">
+<img class="ba-img" src="/_blob/094c17f6799e48911a8db9e6ff9cf158" alt="Before: dry, frizzy, damaged hair" style="clip-path: inset(0 {{recRight}}% 0 0)">
+<div class="ba-line" style="left: {{recPos}}%"><span class="ba-knob"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="#14302f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 2 2 7l5 5M15 2l5 5-5 5"></path></svg></span></div>
+<span class="ba-tag" style="left: 14px">Before</span>
+<span class="ba-tag" style="right: 14px">After</span>
+<span class="ba-sample">Sample image</span>
+<input class="ba-range" type="range" min="0" max="100" step="1" value="{{recPos}}" onInput="{{onRec}}" onChange="{{onRec}}" aria-label="Compare before and after hair reconstruction">
+</div>
+<figcaption style="padding: 0 10px 8px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; align-items: baseline">
+<span style="font-family: 'Cormorant Garamond', serif; font-size: 26px">Hair reconstruction</span>
+<span style="font-size: 14px; color: #5b5b5b">Strength, softness and shine restored</span>
+</figcaption>
+</figure>
+<figure class="frost" style="margin: 0; border-radius: 32px; padding: 12px; display: flex; flex-direction: column; gap: 14px">
+<div class="ba-stage" style="aspect-ratio: 2 / 3">
+<img class="ba-img" src="/_blob/3a737b6067c53249966f58b3f6449098" alt="After: long, full hair with Halo extensions blended in">
+<img class="ba-img" src="/_blob/313b9f3f729bc6bae951a4febf0a5d1d" alt="Before: fine, shoulder length hair with little volume" style="clip-path: inset(0 {{haloRight}}% 0 0)">
+<div class="ba-line" style="left: {{haloPos}}%"><span class="ba-knob"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="#14302f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 2 2 7l5 5M15 2l5 5-5 5"></path></svg></span></div>
+<span class="ba-tag" style="left: 14px">Before</span>
+<span class="ba-tag" style="right: 14px">After</span>
+<span class="ba-sample">Sample image</span>
+<input class="ba-range" type="range" min="0" max="100" step="1" value="{{haloPos}}" onInput="{{onHalo}}" onChange="{{onHalo}}" aria-label="Compare before and after Halo extensions">
+</div>
+<figcaption style="padding: 0 10px 8px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; align-items: baseline">
+<span style="font-family: 'Cormorant Garamond', serif; font-size: 26px">Halo extensions</span>
+<span style="font-size: 14px; color: #5b5b5b">Instant length and fullness</span>
+</figcaption>
+</figure>
+</div>
+</section>
+
+<section id="brands" style="max-width: 1240px; margin: 0 auto; padding: 24px 24px 96px; text-align: center">
+<div style="font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #2f6f6d; margin-bottom: 14px">The brands we trust</div>
+<h2 style="margin: 0 0 40px; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(32px, 3.6vw, 48px)">Professional products, chosen with care</h2>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 40px">
+<sc-for list="{{brands}}" as="b" hint-placeholder-count="12">
+<span style="font-family: 'Cormorant Garamond', serif; font-size: 26px; color: #4a4a4a">{{b}}</span>
+</sc-for>
+</div>
+</section>
+
+<section style="position: relative; isolation: isolate; background: #f8f8f8; padding: 96px 24px">
+<div class="ambient" aria-hidden="true" style="inset: 0; background: radial-gradient(36% 50% at 80% 30%, rgba(176,218,217,0.55), rgba(176,218,217,0) 70%), radial-gradient(34% 46% at 18% 78%, rgba(176,218,217,0.45), rgba(176,218,217,0) 70%), radial-gradient(28% 40% at 48% 50%, rgba(201,188,176,0.22), rgba(201,188,176,0) 70%)"></div>
+<div style="max-width: 1240px; margin: 0 auto">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 28px; margin-bottom: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #2f6f6d">Kind words</div>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(38px, 4.4vw, 60px); line-height: 1.05">Loved by our clients</h2>
+</div>
+<div class="frost rating-badge" style="border-radius: 28px; padding: 20px 26px; display: flex; align-items: center; gap: 20px; box-sizing: border-box">
+<div style="font-family: 'Cormorant Garamond', serif; font-size: 64px; line-height: .9; color: #14302f">5.0</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span class="stars" role="img" aria-label="5 out of 5 stars"><sc-for list="{{five}}" as="s" hint-placeholder-count="5"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="#2f6f6d"></path></svg></sc-for></span>
+<span style="font-size: 15px; font-weight: 600">1,125 verified reviews</span>
+<span style="font-size: 14px; color: #4a4a4a">99.4% would refer friends and family</span>
+</div>
+</div>
+</div>
+<div class="rev-grid">
+<sc-for list="{{reviews}}" as="r" hint-placeholder-count="6">
+<figure class="frost lift" style="margin: 0; padding: 30px; border-radius: 32px; display: flex; flex-direction: column; gap: 18px; box-sizing: border-box">
+<span class="stars" role="img" aria-label="5 out of 5 stars"><sc-for list="{{five}}" as="s" hint-placeholder-count="5"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="#7fbfbd"></path></svg></sc-for></span>
+<blockquote style="margin: 0; flex: 1; font-family: 'Cormorant Garamond', serif; font-size: 23px; line-height: 1.4; font-style: italic">“{{r.quote}}”</blockquote>
+<figcaption style="display: flex; align-items: center; gap: 12px">
+<span style="width: 40px; height: 40px; flex: none; border-radius: 50%; background: #b0dad9; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #14302f">{{r.initial}}</span>
+<span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 15px; font-weight: 600">{{r.name}}</span><span style="font-size: 13px; color: #5b5b5b">{{r.since}}</span></span>
+</figcaption>
+</figure>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 20px; margin-top: 32px">
+<a href="https://local.demandforce.com/b/purehair" target="_blank" rel="noopener" class="btn-soft">Read all 1,125 reviews</a>
+<span style="font-size: 13px; color: #5b5b5b">Verified client reviews via Demandforce</span>
+</div>
+</div>
+</section>
+
+<section id="instagram" style="max-width: 1240px; margin: 0 auto; padding: 24px 24px 96px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 28px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #2f6f6d">Follow along</div>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(36px, 4vw, 54px); line-height: 1.05">@purehairspa</h2>
+</div>
+<a href="https://www.instagram.com/purehairspa" target="_blank" rel="noopener" class="btn-soft">Follow on Instagram</a>
+</div>
+<div class="ig-grid">
+<sc-for list="{{ig}}" as="g" hint-placeholder-count="6">
+<a class="ig-tile" href="https://www.instagram.com/purehairspa" target="_blank" rel="noopener" aria-label="{{g.alt}}, view on Instagram">
+<img src="{{g.src}}" alt="" loading="lazy">
+<span class="ig-ov"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.4-2h5.8l1.4 2h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"></path><circle cx="12" cy="13" r="3.4"></circle></svg></span>
+</a>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width: 1240px; margin: 0 auto; padding: 96px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 64px">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<div style="font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #2f6f6d">Good to know</div>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(38px, 4.4vw, 60px); line-height: 1.08">Questions, answered</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.8; font-weight: 300">From booking to aftercare, here is what guests ask us most.</p>
+<a href="FAQ.dc.html" class="btn-soft" style="align-self: flex-start">Read all FAQs</a>
+</div>
+<div style="display: flex; flex-direction: column">
+<a href="FAQ.dc.html" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 24px 0; border-bottom: 1px solid #dfe9e8; text-decoration: none; color: #353535; font-family: 'Cormorant Garamond', serif; font-size: 26px; min-height: 44px">What is hair reconstruction?<span aria-hidden="true" style="color: #2f6f6d">+</span></a>
+<a href="FAQ.dc.html" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 24px 0; border-bottom: 1px solid #dfe9e8; text-decoration: none; color: #353535; font-family: 'Cormorant Garamond', serif; font-size: 26px; min-height: 44px">Do you take walk-ins?<span aria-hidden="true" style="color: #2f6f6d">+</span></a>
+<a href="FAQ.dc.html" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 24px 0; border-bottom: 1px solid #dfe9e8; text-decoration: none; color: #353535; font-family: 'Cormorant Garamond', serif; font-size: 26px; min-height: 44px">Do you style wedding parties?<span aria-hidden="true" style="color: #2f6f6d">+</span></a>
+</div>
+</section>
+
+<section style="position: relative; isolation: isolate; padding: 24px 24px 96px">
+<div class="ambient" aria-hidden="true" style="inset: -40px 0; background: radial-gradient(34% 60% at 20% 50%, rgba(176,218,217,0.55), rgba(176,218,217,0) 70%), radial-gradient(34% 60% at 82% 45%, rgba(176,218,217,0.5), rgba(176,218,217,0) 70%), radial-gradient(26% 40% at 50% 90%, rgba(201,188,176,0.24), rgba(201,188,176,0) 70%)"></div>
+<div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px">
+<div class="frost" style="color: #353535; border-radius: 40px; padding: 56px; display: flex; flex-direction: column; gap: 22px">
+<div style="font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #2f6f6d">Visit us</div>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(36px, 4vw, 52px); line-height: 1.08">Bloomfield Commons</h2>
+<div style="font-size: 18px; line-height: 1.8; font-weight: 300">3655 W Maple Rd<br>Bloomfield Township, MI 48301</div>
+<div style="font-size: 18px; line-height: 1.8; font-weight: 300">Tuesday to Saturday, 9am to 5pm<br>Open late Tuesday and Thursday evenings</div>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; padding-top: 8px">
+<a href="Contact.dc.html" class="btn">Request appointment</a>
+<a href="tel:+12487923146" class="btn-soft">Call (248) 792-3146</a>
+</div>
+</div>
+<div class="frost" style="border-radius: 40px; padding: 12px; display: flex">
+<a class="mapcard" href="https://www.google.com/maps/search/?api=1&amp;query=Pure+Hair+Spa+3655+W+Maple+Rd+Bloomfield+Township+MI+48301" target="_blank" rel="noopener" aria-label="Open Pure Hair Spa, 3655 W Maple Rd, Bloomfield Township, in Google Maps" style="min-height: 396px">
+<svg class="map" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="600" height="400" fill="#e6f2f1"></rect><rect x="30" y="250" width="150" height="110" rx="20" fill="#d6e9d8"></rect><rect x="470" y="40" width="110" height="80" rx="18" fill="#d6e9d8"></rect><ellipse cx="520" cy="300" rx="70" ry="38" fill="#cbe6e5"></ellipse><path d="M-20 60 L260 420" stroke="#ffffff" stroke-width="9" fill="none"></path><path d="M150 -10 L172 410" stroke="#ffffff" stroke-width="10" fill="none"></path><path d="M432 -10 L410 410" stroke="#ffffff" stroke-width="10" fill="none"></path><path d="M-20 330 C 160 320, 420 350, 620 330" stroke="#ffffff" stroke-width="8" fill="none"></path><path d="M-20 214 C 150 204, 300 224, 620 200" stroke="#d3e3e2" stroke-width="28" fill="none"></path><path d="M-20 214 C 150 204, 300 224, 620 200" stroke="#ffffff" stroke-width="22" fill="none"></path><rect x="236" y="132" width="128" height="52" rx="12" fill="#cfe3e2"></rect><text x="300" y="117" text-anchor="middle" font-size="12" fill="#4e6463" font-family="-apple-system, BlinkMacSystemFont, sans-serif" letter-spacing="1.5">BLOOMFIELD COMMONS</text><text x="60" y="244" font-size="12" fill="#5b6b6a" font-family="-apple-system, BlinkMacSystemFont, sans-serif" letter-spacing="1.5">W MAPLE RD</text></svg>
+<span class="pulse" aria-hidden="true"></span>
+<svg class="pin" width="36" height="46" viewBox="0 0 36 46" aria-hidden="true"><path d="M18 2C9.7 2 3 8.6 3 16.8 3 28 18 44 18 44s15-16 15-27.2C33 8.6 26.3 2 18 2z" fill="#2f6f6d"></path><circle cx="18" cy="17" r="6" fill="#ffffff"></circle></svg>
+<span class="mapchip"><span style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><span style="font-weight: 600; font-size: 16px">Pure Hair Spa</span><span style="font-size: 14px; color: #4a4a4a">3655 W Maple Rd, Bloomfield Township</span></span><span class="go">Get directions</span></span>
+</a>
+</div>
+</div>
+</section>
+
+<dc-import name="Footer" hint-size="100%,900px"></dc-import>
+<div class="mbar-space" aria-hidden="true"></div>
+<nav class="mbar" aria-label="Quick actions">
+<a href="Contact.dc.html" class="mbar-book"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3"></rect><path d="M3.5 10h17M8 3v4M16 3v4"></path></svg>Book</a>
+<a href="tel:+12487923146"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5.5a2 2 0 0 1 2-2z"></path></svg>Call</a>
+<a href="https://www.google.com/maps/search/?api=1&amp;query=Pure+Hair+Spa+3655+W+Maple+Rd+Bloomfield+Township+MI+48301" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.8 12 21 12 21z"></path><circle cx="12" cy="9.8" r="2.3"></circle></svg>Directions</a>
+</nav>
+<dc-import name="Transition" hint-size="0px,0px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7200}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { menuOpen: false, rec: 50, halo: 50 }; }
+  renderVals() {
+    const rec = this.state.rec, halo = this.state.halo;
+    return {
+      recPos: rec, recRight: 100 - rec,
+      haloPos: halo, haloRight: 100 - halo,
+      onRec: (e) => this.setState({ rec: Number(e.target.value) }),
+      onHalo: (e) => this.setState({ halo: Number(e.target.value) }),
+      five: [1, 2, 3, 4, 5],
+      team: [
+        { initials: 'KC', name: 'Kate Cibor', role: 'Owner & stylist', bio: 'Cuts, color and scalp treatments, with a focus on keeping hair healthy.', alt: 'Kate Cibor, photo coming soon' },
+        { initials: 'AW', name: 'Aly Wenson', role: 'Stylist & colorist', bio: 'Natural, dimensional color that leaves hair healthier after every visit.', alt: 'Aly Wenson, photo coming soon' },
+        { initials: 'R', name: 'Rubina', role: 'Nail technician', bio: 'Gentle, unhurried manicures and pedicures.', alt: 'Rubina, photo coming soon' },
+        { initials: 'S', name: 'Susie', role: 'Guest care', bio: 'Welcoming every guest and keeping your visit easy.', alt: 'Susie, photo coming soon' }
+      ],
+      reviews: [
+        { quote: 'I always love getting my hair done with Kate but today I had a scalp treatment that made my appointment even more amazing. She’s the best!! I highly recommend!!', name: 'Marni Y', initial: 'M', since: 'Client since 2012' },
+        { quote: 'Aly Wenson is a longtime friend of mine and she always takes amazing care of my hair! My color feels so natural, I constantly get compliments, and my hair health always improves after a visit.', name: 'Emily M', initial: 'E', since: 'Client since 2022' },
+        { quote: 'I have been a happy customer for 15 years. They are like family.', name: 'Mary B', initial: 'M', since: 'Client since 2012' },
+        { quote: 'The service and staff were wonderful. Susie is very pleasant and helpful…', name: 'Verified client', initial: 'V', since: 'Verified customer' },
+        { quote: 'Just simply the best.', name: 'Ken K', initial: 'K', since: 'Client since 2011' },
+        { quote: 'FANTASTIC! As always!', name: 'Ellen A', initial: 'E', since: 'Client since 2011' }
+      ],
+      ig: [
+        { src: '/_blob/f53a52ba6404ce4c46a5af8b1ab2efd9', alt: 'Soft pink color with curtain bangs' },
+        { src: '/_blob/5184189e24121603b99a14a5dcd374dc', alt: 'Rose gold 14 balloons celebrating 14 years in the salon' },
+        { src: '/_blob/701eb079284d17939f7da70bb15eeb42', alt: 'Kérastase Glaze Drops' },
+        { src: '/_blob/f1eab54f4777d6cbe500f1ca742de751', alt: 'Long blonde layers with face-framing bangs' },
+        { src: '/_blob/7b7130050f75fd96a3f79306d528c13d', alt: 'Pure Hair treats celebrating 13 years' },
+        { src: '/_blob/39376e351b721b76223c2193868b3bfa', alt: 'Fall planter outside the salon on Maple Road' }
+      ],
+      menuOpen: this.state.menuOpen,
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      services: [
+        { num: '01', name: 'Cuts', href: 'Services.dc.html#cuts', items: "Women's haircuts and men's haircuts, shaped around how you live with your hair." },
+        { num: '02', name: 'Color', href: 'Services.dc.html#color', items: 'Highlights, balayage and all-over color with healthy hair in mind.' },
+        { num: '03', name: 'Halo extensions', href: 'Services.dc.html#extensions', items: 'Halo extensions for instant length and fullness, matched, cut and blended to your own hair.' },
+        { num: '04', name: 'Styling', href: 'Services.dc.html#styling', items: 'Blowouts, up styling and wedding parties for every occasion.' },
+        { num: '05', name: 'Scalp care', href: 'Services.dc.html#scalp', items: 'New: cleansing, hydrating and balancing treatments for a healthy scalp.' },
+        { num: '06', name: 'Hair treatments', href: 'Services.dc.html#treatments', items: 'Hair reconstruction, Fusio-Dose, keratin and Brazilian blowouts.' },
+        { num: '07', name: 'Nails', href: 'Services.dc.html#nails', items: 'Manicures and pedicures in a calm, unhurried setting.' },
+        { num: '08', name: 'Threading', href: 'Services.dc.html#nails', items: 'Precise brow and facial threading to finish your look.' }
+      ],
+      brands: ['Kérastase', 'Oribe', 'René Furterer', 'Moroccanoil', 'Amika', 'Dyson', 'Mason Pearson', 'YS Park', 'Nat + Noor', 'Chan Luu', 'Skin Apothetique', 'Teleties', 'Elchim', 'Kitsch', 'France Luxe']
+    };
+  }
+}
+</script>
+</body>
+</html>

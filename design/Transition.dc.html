@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pure Hair Spa · Page transition</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.pt{position:fixed;inset:0;z-index:200;pointer-events:none;overflow:hidden;contain:strict}
+.pt.block{pointer-events:auto;cursor:progress}
+.pt.idle{visibility:hidden}
+.pt-frost{position:absolute;inset:0;opacity:0;background:rgba(248,248,248,.35);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);will-change:opacity}
+.pt-glow{position:absolute;left:-6%;right:-6%;bottom:0;height:150%}
+.pt-bar{position:absolute;bottom:0;transform-origin:50% 100%;transform:scaleY(0);will-change:transform;filter:blur(30px);background:linear-gradient(0deg,#7fbfbd 0%,#9fd1cf 16%,#b0dad9 32%,#d9efee 50%,#ffffff 66%,#eef1f1 82%,rgba(248,248,248,0) 100%)}
+.pt-veil{position:absolute;inset:0;opacity:0;will-change:opacity,-webkit-mask-position,mask-position;background:radial-gradient(120% 90% at 50% 110%,#b0dad9 0%,#d6eeed 38%,#f6fafa 70%,#f8f8f8 100%)}
+.pt-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);opacity:0;will-change:opacity}
+.pt-mark img{display:block;height:96px;width:auto}
+.pt.out .pt-frost{animation:ptFade 1s ease forwards}
+.pt.out .pt-bar{animation:barUp 1.1s cubic-bezier(.33,0,.15,1) forwards}
+.pt.out .pt-veil{animation:veilIn 1.15s cubic-bezier(.4,0,.2,1) forwards}
+.pt.out .pt-mark{animation:ptFade .7s ease .6s forwards}
+.pt.in .pt-frost{opacity:1;animation:ptUnfade 1.2s ease .6s both}
+.pt.in .pt-bar{transform:scaleY(1);animation:barDown 1.3s cubic-bezier(.55,0,.3,1) both}
+.pt.in .pt-veil{opacity:1;-webkit-mask-image:linear-gradient(180deg,transparent 0%,transparent 38%,#000 62%,#000 100%);mask-image:linear-gradient(180deg,transparent 0%,transparent 38%,#000 62%,#000 100%);-webkit-mask-size:100% 260%;mask-size:100% 260%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:0 100%;mask-position:0 100%;animation:ptRecede 1.7s cubic-bezier(.6,0,.25,1) .55s both}
+.pt.in .pt-mark{opacity:1;animation:ptUnfade .6s ease .45s both}
+@keyframes ptFade{from{opacity:0}to{opacity:1}}
+@keyframes ptUnfade{from{opacity:1}to{opacity:0}}
+@keyframes veilIn{0%,30%{opacity:0}100%{opacity:1}}
+@keyframes barUp{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes barDown{from{transform:scaleY(1)}to{transform:scaleY(0)}}
+@keyframes ptRecede{from{-webkit-mask-position:0 100%;mask-position:0 100%}to{-webkit-mask-position:0 0;mask-position:0 0}}
+.wr-layer{position:fixed;inset:0;z-index:190;pointer-events:none;overflow:hidden}
+.wr-ring{position:absolute;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;border:1.5px solid rgba(111,180,178,.85);box-shadow:0 0 12px rgba(176,218,217,.55),inset 0 0 8px rgba(255,255,255,.6);opacity:.9;transform:scale(.2);animation:wrRing .9s cubic-bezier(.2,.7,.3,1) forwards;will-change:transform,opacity}
+.wr-ring.r2{border-color:rgba(176,218,217,.6);animation-duration:1.25s;animation-delay:.12s;opacity:0}
+.wr-dot{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.95),rgba(176,218,217,.5) 60%,rgba(176,218,217,0) 72%);animation:wrDot .5s ease-out forwards}
+.wsh-wrap{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none;z-index:3}
+.wsh{position:absolute;top:-20%;bottom:-20%;left:0;width:75%;pointer-events:none;background:linear-gradient(105deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.18) 30%,rgba(255,255,255,.6) 48%,rgba(236,250,249,.5) 54%,rgba(255,255,255,.12) 70%,rgba(255,255,255,0) 100%);filter:blur(1px);transform:translateX(-120%) skewX(-12deg);animation:wshSweep 1.25s cubic-bezier(.45,.05,.35,1) forwards}
+@keyframes wrRing{0%{transform:scale(.2);opacity:.95}100%{transform:scale(5.5);opacity:0}}
+@keyframes wrDot{from{transform:scale(1);opacity:1}to{transform:scale(2.2);opacity:0}}
+@keyframes wshSweep{from{transform:translateX(-120%) skewX(-12deg)}to{transform:translateX(260%) skewX(-12deg)}}
+@media (prefers-reduced-motion:reduce){.wr-layer,.wsh-wrap{display:none}}
+@media (prefers-reduced-motion:reduce){.pt{display:none}}
+</style>
+</helmet>
+<div ref="{{setRoot}}" class="{{rootClass}}" aria-hidden="true">
+<div class="pt-frost"></div>
+<div class="pt-glow">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="9">
+<div class="pt-bar" style="{{b.style}}"></div>
+</sc-for>
+</div>
+<div class="pt-veil"></div>
+<div class="pt-mark"><img src="/_blob/ec7fe47f07b85e408d351a4770f5a2e1" alt=""></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    let reduce = false;
+    try { reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); } catch (e) {}
+    this.reduce = reduce;
+    this.state = { phase: 'idle' };
+    this.timers = [];
+    this.setRoot = (el) => { this.root = el; };
+    this.onClick = (e) => {
+      if (this.passing || this.reduce) return;
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a) return;
+      const href = a.getAttribute('href') || '';
+      if (href.charAt(0) === '#' || !/\.dc\.html/i.test(href) || a.getAttribute('target') === '_blank') return;
+      e.preventDefault(); e.stopPropagation();
+      if (this.state.phase === 'out') return;
+      this.clear();
+      this.setState({ phase: 'out' });
+      this.later(() => {
+        this.passing = true;
+        try { a.click(); } catch (err) {}
+        this.passing = false;
+        this.later(() => {
+          if (!this.mounted) return;
+          this.setState({ phase: 'in' });
+          this.later(() => { if (this.mounted) this.setState({ phase: 'idle' }); }, 2400);
+        }, 700);
+      }, 1750);
+    };
+    this.SEL = '.btn,.bar-cta,.btn-soft,.chip,.glass,.menu-btn,.bar-btn,.social,.mbar a';
+    this.onDown = (e) => {
+      if (!this.layer || (e.button !== undefined && e.button > 0)) return;
+      const x = e.clientX, y = e.clientY;
+      const mk = (cls) => { const d = this.doc.createElement('span'); d.className = cls; d.style.left = x + 'px'; d.style.top = y + 'px'; this.layer.appendChild(d); setTimeout(() => { if (d.parentNode) d.parentNode.removeChild(d); }, 1500); };
+      mk('wr-dot'); mk('wr-ring'); mk('wr-ring r2');
+    };
+    this.onOver = (e) => {
+      if (e.pointerType && e.pointerType !== 'mouse') return;
+      const el = e.target && e.target.closest ? e.target.closest(this.SEL) : null;
+      if (!el || (e.relatedTarget && el.contains(e.relatedTarget))) return;
+      const now = Date.now(); if (el._wshT && now - el._wshT < 1300) return; el._wshT = now;
+      const win = this.doc.defaultView || window;
+      const cs = win.getComputedStyle(el);
+      if (cs.position === 'static') el.style.position = 'relative';
+      const wrap = this.doc.createElement('span'); wrap.className = 'wsh-wrap'; wrap.setAttribute('aria-hidden', 'true');
+      const sh = this.doc.createElement('span'); sh.className = 'wsh'; wrap.appendChild(sh);
+      el.appendChild(wrap); setTimeout(() => { if (wrap.parentNode) wrap.parentNode.removeChild(wrap); }, 1400);
+    };
+  }
+  later(fn, ms) { this.timers.push(setTimeout(fn, ms)); }
+  clear() { this.timers.forEach(clearTimeout); this.timers = []; }
+  componentDidMount() {
+    this.mounted = true;
+    this.doc = (this.root && this.root.ownerDocument) || document;
+    if (this.reduce) return;
+    this.doc.addEventListener('click', this.onClick, true);
+    this.doc.addEventListener('pointerover', this.onOver, { passive: true });
+  }
+  componentWillUnmount() {
+    this.mounted = false;
+    this.clear();
+    if (this.doc) this.doc.removeEventListener('click', this.onClick, true);
+    if (this.doc) { this.doc.removeEventListener('pointerdown', this.onDown); this.doc.removeEventListener('pointerover', this.onOver); }
+    if (this.layer && this.layer.parentNode) this.layer.parentNode.removeChild(this.layer);
+  }
+  renderVals() {
+    const p = this.state.phase;
+    const n = 9, valley = 0.62, colW = 100 / n, mid = (n - 1) / 2;
+    const bars = [];
+    for (let i = 0; i < n; i++) {
+      const t = Math.abs(i - mid) / mid;
+      const eased = 1 - Math.pow(t, 1.24);
+      const h = 100 * (valley + (1 - valley) * eased);
+      const delay = p === 'out' ? t * 0.16 : 0.65 + (1 - t) * 0.14;
+      bars.push({ style: 'left:' + (i * colW - colW * 0.15).toFixed(2) + '%;width:' + (colW * 1.3).toFixed(2) + '%;height:' + h.toFixed(1) + '%;animation-delay:' + delay.toFixed(3) + 's' });
+    }
+    return {
+      setRoot: this.setRoot,
+      rootClass: 'pt ' + p + (p === 'out' ? ' block' : ''),
+      bars
+    };
+  }
+}
+</script>
+</body>
+</html>

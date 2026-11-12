@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pure Hair Spa · Waterfall</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div ref="{{setWrap}}" style="position: relative; width: 100%; height: {{hpx}}; overflow: hidden; background: #dcebea">
+<img src="{{poster}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{objPos}}">
+<sc-if value="{{hasVideo}}" hint-placeholder-val="{{false}}">
+<video ref="{{setVideo}}" src="{{video}}" poster="{{poster}}" muted="" loop="" autoplay="" playsinline="" preload="auto" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{objPos}}"></video>
+</sc-if>
+<canvas ref="{{setCanvas}}" onPointerMove="{{onMove}}" onPointerDown="{{onMove}}" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .8s ease; touch-action: pan-y"></canvas>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"height":{"editor":"int","default":760,"min":200,"max":1400,"section":"Waterfall"},"focusX":{"editor":"range","min":0,"max":1,"step":0.05,"default":0.7,"section":"Waterfall"},"focusY":{"editor":"range","min":0,"max":1,"step":0.05,"default":0.5,"section":"Waterfall"},"rippleSize":{"editor":"range","min":0.5,"max":1.6,"step":0.05,"default":1,"section":"Ripples"},"rippleStrength":{"editor":"range","min":0.2,"max":1.6,"step":0.05,"default":1,"section":"Ripples"},"ambient":{"editor":"boolean","default":true,"section":"Ripples"},"waterLine":{"editor":"range","min":0,"max":1,"step":0.05,"default":0.6,"section":"Ripples"},"video":{"editor":null,"default":""},"poster":{"editor":null,"default":"/_blob/1134c036b31f643218f9df52e38fe195"},"mask":{"editor":null,"default":"/_blob/3ee74958a0985a22e3410f51ac0927de"},"$preview":{"width":1200,"height":760}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.rips = []; this.next = 1.2; this.raf = 0; this.visible = true; this.last = null; this.shown = false;
+    this.cov = [1, 1]; this.off = [0, 0];
+    this.setWrap = (el) => { this.wrap = el; };
+    this.setCanvas = (el) => { this.canvas = el; };
+    this.setVideo = (el) => { this.videoEl = el; };
+    this.onMove = (e) => {
+      if (!this.canvas || !this.gl) return;
+      const r = this.canvas.getBoundingClientRect();
+      const x = e.clientX - r.left, y = e.clientY - r.top, now = performance.now();
+      const L = this.last;
+      if (L && Math.hypot(x - L.x, y - L.y) < 34 && now - L.t < 140) return;
+      this.last = { x, y, t: now };
+      const m = this.maskAt(x, y);
+      if (m > 0.35) this.addRip(x, y, 0.85 * m);
+    };
+  }
+  H() { const v = Number(this.props.height); return v > 0 ? v : 760; }
+  fillOn() { return this.props.fill === true || this.props.fill === 'true'; }
+  fitHost() {
+    if (!this.fillOn() || !this.wrap || !this.wrap.closest) return;
+    const host = this.wrap.closest('[data-falls-fill]');
+    if (!host) return;
+    const h = host.clientHeight;
+    if (h > 0 && Math.abs(this.wrap.offsetHeight - h) > 1) this.wrap.style.height = h + 'px';
+  }
+  num(v, d) { const n = Number(v); return v !== '' && v != null && isFinite(n) ? n : d; }
+  addRip(x, y, s) {
+    const d = this.dpr || 1;
+    this.rips.push({ x: x * d, y: y * d, t: (performance.now() - this.t0) / 1000, s });
+    if (this.rips.length > 16) this.rips.shift();
+  }
+  maskAt(x, y) {
+    const w = this.wrap ? this.wrap.clientWidth : 0, h = this.wrap ? this.wrap.clientHeight : 0;
+    if (!w || !h) return 0;
+    const u = (x / w) * this.cov[0] + this.off[0], v = (y / h) * this.cov[1] + this.off[1];
+    if (this.maskData) {
+      const M = this.maskData, px = Math.max(0, Math.min(M.w - 1, Math.floor(u * M.w))), py = Math.max(0, Math.min(M.h - 1, Math.floor(v * M.h)));
+      return M.d[(py * M.w + px) * 4] / 255;
+    }
+    const wl = this.num(this.props.waterLine, 0.6);
+    return Math.max(0, Math.min(1, (v - wl) / 0.08));
+  }
+  componentDidMount() {
+    this.t0 = performance.now();
+    this.reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const v = this.videoEl;
+    if (v) {
+      v.muted = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', '');
+      if (this.reduce) { try { v.pause(); } catch (e) {} v.removeAttribute('autoplay'); }
+      else { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+    }
+    this.fitHost();
+    try {
+      const host = this.wrap && this.wrap.closest ? this.wrap.closest('[data-falls-fill]') : null;
+      if (host && this.fillOn()) { this.ro = new ResizeObserver(() => this.fitHost()); this.ro.observe(host); }
+    } catch (e) {}
+    if (!this.reduce) this.initGL();
+    try {
+      this.io = new IntersectionObserver((en) => {
+        this.visible = en[0] ? en[0].isIntersecting : true;
+        if (v && !this.reduce) { if (this.visible) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause(); }
+      });
+      this.io.observe(this.wrap);
+    } catch (e) {}
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+    if (this.io) this.io.disconnect();
+    if (this.ro) this.ro.disconnect();
+  }
+  initGL() {
+    const c = this.canvas; if (!c) return;
+    let gl = null;
+    try { gl = c.getContext('webgl', { alpha: false, antialias: false, premultipliedAlpha: false, preserveDrawingBuffer: false }); } catch (e) {}
+    if (!gl) return;
+    const vs = 'attribute vec2 p;varying vec2 uv;void main(){uv=vec2((p.x+1.)*.5,(1.-p.y)*.5);gl_Position=vec4(p,0.,1.);}';
+    const fs = [
+      'precision highp float;',
+      'varying vec2 uv;uniform sampler2D tex;uniform sampler2D msk;uniform float hasMask;',
+      'uniform vec2 res;uniform float t;uniform float dpr;uniform float wl;uniform float size;uniform float amp;',
+      'uniform vec4 rip[16];uniform vec2 cover;uniform vec2 off;',
+      'void main(){',
+      ' vec2 p=uv*res; vec2 base=clamp(uv,0.,1.)*cover+off;',
+      ' float water = hasMask>.5 ? texture2D(msk,base).r : smoothstep(wl,wl+.08,base.y);',
+      ' vec2 d=vec2(0.); float hl=0.;',
+      ' if(water>.002){',
+      '  float spd=62.*dpr*size; float sig=8.*dpr*size; float k=.24/(dpr*size);',
+      '  for(int i=0;i<16;i++){',
+      '   vec4 r=rip[i]; float age=t-r.z;',
+      '   if(r.w>0. && age>0. && age<2.4){',
+      '    vec2 v=p-r.xy; v.y*=2.6;',
+      '    float dist=length(v); float band=dist-age*spd;',
+      '    float env=exp(-(band*band)/(2.*sig*sig));',
+      '    float fade=exp(-age*1.5)*(1.-smoothstep(1.7,2.4,age))*smoothstep(0.,.12,age);',
+      '    float w=sin(band*k)*env*fade*r.w;',
+      '    vec2 n=v/max(dist,1.); n.y/=2.6;',
+      '    d+=n*w*2.6*dpr*amp; hl+=w;',
+      '   }',
+      '  }',
+      '  d*=water; hl*=water;',
+      ' }',
+      ' vec2 q=clamp((p+d)/res,0.,1.)*cover+off;',
+      ' vec3 c=texture2D(tex,q).rgb;',
+      ' c+=hl*.035*amp; c=mix(c,vec3(1.),clamp(hl,0.,1.)*.03*amp);',
+      ' gl_FragColor=vec4(c,1.);',
+      '}'
+    ].join('\n');
+    const mk = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; };
+    const a = mk(gl.VERTEX_SHADER, vs), b = mk(gl.FRAGMENT_SHADER, fs);
+    if (!a || !b) return;
+    const pr = gl.createProgram(); gl.attachShader(pr, a); gl.attachShader(pr, b); gl.linkProgram(pr);
+    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+    gl.useProgram(pr);
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    const mkTex = (unit) => {
+      const t = gl.createTexture(); gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, t);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      return t;
+    };
+    this.texMask = mkTex(1);
+    this.texMain = mkTex(0);
+    this.gl = gl;
+    this.u = {};
+    ['tex', 'msk', 'hasMask', 'res', 't', 'dpr', 'wl', 'size', 'amp', 'rip', 'cover', 'off'].forEach((n) => { this.u[n] = gl.getUniformLocation(pr, n); });
+    this.ripArr = new Float32Array(64);
+    this.hasMask = 0;
+    const msrc = this.props.mask;
+    if (msrc) {
+      const mi = new Image();
+      mi.onload = () => {
+        try {
+          gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, this.texMask);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, mi);
+          gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, this.texMain);
+          this.hasMask = 1;
+          const cv = document.createElement('canvas'); cv.width = 240; cv.height = Math.max(1, Math.round(240 * mi.naturalHeight / mi.naturalWidth));
+          const cx = cv.getContext('2d'); cx.drawImage(mi, 0, 0, cv.width, cv.height);
+          this.maskData = { w: cv.width, h: cv.height, d: cx.getImageData(0, 0, cv.width, cv.height).data };
+        } catch (e) { this.hasMask = 0; }
+      };
+      mi.src = msrc;
+    }
+    if (!this.videoEl) {
+      const img = new Image();
+      img.onload = () => { this.img = img; this.imgDirty = true; };
+      img.src = this.props.poster || '/_blob/1134c036b31f643218f9df52e38fe195';
+    }
+    const loop = () => { if (this.visible) this.frame(); this.raf = requestAnimationFrame(loop); };
+    this.raf = requestAnimationFrame(loop);
+  }
+  frame() {
+    this.fitHost();
+    const gl = this.gl, c = this.canvas, wrap = this.wrap; if (!gl || !c || !wrap) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const cw = wrap.clientWidth, ch = wrap.clientHeight;
+    if (!cw || !ch) return;
+    if (c.width !== Math.round(cw * dpr) || c.height !== Math.round(ch * dpr)) {
+      c.width = Math.round(cw * dpr); c.height = Math.round(ch * dpr); gl.viewport(0, 0, c.width, c.height);
+    }
+    this.dpr = dpr;
+    let sw = 0, sh = 0;
+    try {
+      gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, this.texMain);
+      if (this.videoEl) {
+        const v = this.videoEl;
+        if (v.readyState < 2 || !v.videoWidth) return;
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, v);
+        sw = v.videoWidth; sh = v.videoHeight;
+      } else {
+        if (!this.img) return;
+        if (this.imgDirty) { gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.img); this.imgDirty = false; }
+        sw = this.img.naturalWidth; sh = this.img.naturalHeight;
+      }
+    } catch (e) { this.gl = null; return; }
+    const ca = cw / ch, va = sw / sh, fx = this.num(this.props.focusX, 0.7), fy = this.num(this.props.focusY, 0.5);
+    if (ca > va) { const k = va / ca; this.cov = [1, k]; this.off = [0, (1 - k) * fy]; }
+    else { const k = ca / va; this.cov = [k, 1]; this.off = [(1 - k) * fx, 0]; }
+    const t = (performance.now() - this.t0) / 1000;
+    if ((this.props.ambient ?? true) && t > this.next) {
+      for (let i = 0; i < 14; i++) {
+        const x = cw * (0.08 + Math.random() * 0.84), y = ch * (0.55 + Math.random() * 0.42);
+        if (this.maskAt(x, y) > 0.7) { this.addRip(x, y, 0.5); break; }
+      }
+      this.next = t + 1.6 + Math.random() * 1.6;
+    }
+    const A = this.ripArr; A.fill(0);
+    this.rips.forEach((r, i) => { A[i * 4] = r.x; A[i * 4 + 1] = r.y; A[i * 4 + 2] = r.t; A[i * 4 + 3] = r.s; });
+    gl.uniform1i(this.u.tex, 0);
+    gl.uniform1i(this.u.msk, 1);
+    gl.uniform1f(this.u.hasMask, this.hasMask);
+    gl.uniform2f(this.u.res, c.width, c.height);
+    gl.uniform1f(this.u.t, t);
+    gl.uniform1f(this.u.dpr, dpr);
+    gl.uniform1f(this.u.wl, this.num(this.props.waterLine, 0.6));
+    gl.uniform1f(this.u.size, this.num(this.props.rippleSize, 1));
+    gl.uniform1f(this.u.amp, this.num(this.props.rippleStrength, 1));
+    gl.uniform4fv(this.u.rip, A);
+    gl.uniform2f(this.u.cover, this.cov[0], this.cov[1]);
+    gl.uniform2f(this.u.off, this.off[0], this.off[1]);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+    if (!this.shown) { this.shown = true; c.style.opacity = '1'; }
+  }
+  renderVals() {
+    const fx = this.num(this.props.focusX, 0.7), fy = this.num(this.props.focusY, 0.5);
+    return {
+      hpx: this.H() + 'px',
+      poster: this.props.poster || '/_blob/1134c036b31f643218f9df52e38fe195',
+      video: this.props.video || '',
+      hasVideo: !!this.props.video,
+      objPos: Math.round(fx * 100) + '% ' + Math.round(fy * 100) + '%',
+      setWrap: this.setWrap, setCanvas: this.setCanvas, setVideo: this.setVideo,
+      onMove: this.onMove
+    };
+  }
+}
+</script>
+</body>
+</html>
